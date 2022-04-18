@@ -14,7 +14,7 @@ class NewsDetailBindings implements CoreBidings {
 
   @override
   void registerControllers() {
-    Get.lazyPut(() => NewsDetailController(), fenix: true);
+    Get.lazyPut(() => NewsDetailController(repository: Get.find()), fenix: true);
   }
 
   @override

@@ -18,16 +18,21 @@ class NewsRepository implements NewsRepositoryInterface {
       );
       var newsList = <NewsModel>[];
       if (result.data != null) {
-        for (var item in result.data) {
-          newsList.add(
-            NewsModel.fromJson(item),
-          );
-        }
+        newsList = result.data.map<NewsModel>((item) => NewsModel.fromJson(item)).toList();
       }
+
       return newsList;
     } catch (e, s) {
       _logger.error('Error loading news', e, s);
       return <NewsModel>[];
     }
+  }
+
+  @override
+  Future<void> update(NewsModel news) async {
+    await _restClient.put(
+      'http://localhost:3031/news/${news.id}',
+      data: news.toJson(),
+    );
   }
 }

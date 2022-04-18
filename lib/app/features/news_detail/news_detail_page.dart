@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:news_app/app/core/theme/app_theme.dart';
-import 'package:news_app/app/core/theme/extensions/size_screen_extension.dart';
 import 'package:news_app/app/core/widgets/app_horizontal_divider/app_horizontal_divider_component.dart';
 import 'package:news_app/app/core/widgets/app_text/app_text.dart';
 import 'package:news_app/app/features/news_detail/news_detail_controller.dart';
+import 'package:news_app/app/features/news_detail/widgets/action_button.dart';
 import 'package:news_app/app/features/news_detail/widgets/author_detail_card.dart';
 import 'package:news_app/app/features/news_detail/widgets/image_summary.dart';
+import 'package:news_app/app/features/news_detail/widgets/pill_featured.dart';
 import 'package:news_app/app/features/news_detail/widgets/pill_top.dart';
 import 'package:news_app/app/features/news_detail/widgets/reviwed_card.dart';
 
@@ -28,11 +29,11 @@ class NewsDetailPage extends GetView<NewsDetailController> {
                 children: [
                   CachedNetworkImage(
                     imageUrl: controller.news.postImage,
-                    height: 377.32,
+                    height: controller.heightImage,
                     fit: BoxFit.cover,
                   ),
-                  Actionbutton(
-                    top: 66,
+                  ActionButton(
+                    top: controller.heightImage * 0.15,
                     left: 29,
                     onTap: Get.back,
                     widget: Padding(
@@ -44,23 +45,24 @@ class NewsDetailPage extends GetView<NewsDetailController> {
                       ),
                     ),
                   ),
-                  Actionbutton(
-                    top: 66,
+                  ActionButton(
+                    top: controller.heightImage * 0.15,
                     right: 26,
-                    onTap: () {},
+                    onTap: controller.setLiked,
                     widget: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Image.asset(
                         'assets/icons/menu2.png',
                         height: 10,
                         fit: BoxFit.contain,
+                        color: controller.liked ? AppThemes.instance.colors.blueDefault : AppThemes.instance.colors.whiteDefault,
                       ),
                     ),
                   ),
-                  Actionbutton(
-                    top: 105,
+                  ActionButton(
+                    top: controller.heightImage * 0.25,
                     right: 26,
-                    onTap: () {},
+                    onTap: controller.shareLink,
                     widget: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Icon(
@@ -70,8 +72,13 @@ class NewsDetailPage extends GetView<NewsDetailController> {
                       ),
                     ),
                   ),
+                  PillFeatured(
+                    onTap: controller.setLiked,
+                    top: controller.heightImage * 0.70,
+                    featured: controller.featured,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 350),
+                    padding: EdgeInsets.only(top: controller.heightImage * 0.85),
                     child: Container(
                       decoration: BoxDecoration(
                         color: AppThemes.instance.colors.whiteDefault,
@@ -151,46 +158,6 @@ class NewsDetailPage extends GetView<NewsDetailController> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class Actionbutton extends StatelessWidget {
-  final double? top;
-  final double? left;
-  final double? right;
-  final double? bottom;
-  final Widget widget;
-  final void Function()? onTap;
-  const Actionbutton({
-    Key? key,
-    this.top,
-    this.left,
-    this.right,
-    this.bottom,
-    required this.widget,
-    required this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      left: left,
-      right: right,
-      top: top,
-      bottom: bottom,
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          height: 30,
-          width: 30,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: AppThemes.instance.colors.blackOpacit,
-          ),
-          child: widget,
         ),
       ),
     );

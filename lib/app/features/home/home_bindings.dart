@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:news_app/app/core/repositories/link_launcher/link_launcher_repository.dart';
+import 'package:news_app/app/core/repositories/link_launcher/link_launcher_repository_interface.dart';
 import 'package:news_app/app/core/repositories/news_repository/news_repository.dart';
 import 'package:news_app/app/core/repositories/news_repository/news_repository_interface.dart';
 import 'package:news_app/app/core/routes/app_pages.dart';
@@ -20,6 +22,7 @@ class HomeBindings implements CoreBidings {
       () => NewsRepository(restiClient: Get.find()),
       fenix: true,
     );
+    Get.lazyPut<ILinkLauncherRepository>(() => LinkLauncherRepository(), fenix: true);
   }
 
   @override

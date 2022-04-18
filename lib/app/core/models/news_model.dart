@@ -5,6 +5,7 @@ class NewsModel {
   late String contents;
   late String postImage;
   late bool liked;
+  late bool featured;
   late List<Comments> comments;
   late Author author;
   late String tag;
@@ -16,6 +17,7 @@ class NewsModel {
     required this.contents,
     required this.postImage,
     required this.liked,
+    required this.featured,
     required this.comments,
     required this.author,
     required this.dimensions,
@@ -30,6 +32,7 @@ class NewsModel {
     contents = json['contents'];
     postImage = json['post_image'];
     liked = json['liked'];
+    featured = json['featured'];
     if (json['comments'] != null) {
       comments = <Comments>[];
       json['comments'].forEach((v) {
@@ -49,6 +52,7 @@ class NewsModel {
     data['contents'] = contents;
     data['post_image'] = postImage;
     data['liked'] = liked;
+    data['featured'] = featured;
     data['comments'] = comments.map((v) => v.toJson()).toList();
     data['author'] = author.toJson();
     data['tag'] = tag;
