@@ -73,7 +73,7 @@ class NewsDetailPage extends GetView<NewsDetailController> {
                     ),
                   ),
                   PillFeatured(
-                    onTap: controller.setLiked,
+                    onTap: controller.setFeatured,
                     top: controller.heightImage * 0.70,
                     featured: controller.featured,
                   ),
@@ -101,7 +101,6 @@ class NewsDetailPage extends GetView<NewsDetailController> {
                             ),
                             const SizedBox(height: 31),
                             Wrap(
-                              alignment: WrapAlignment.center,
                               runSpacing: 14,
                               children: [
                                 ImageSummary(
