@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:news_app/app/core/theme/extensions/size_screen_extension.dart';
+import 'package:news_app/app/core/widgets/app_text/app_text.dart';
 import 'package:news_app/app/features/news/news_controller.dart';
-import 'package:news_app/app/features/news/widgets/news_card.dart';
-import 'package:news_app/app/features/news/widgets/search_bar.dart';
+import 'package:news_app/app/core/widgets/news_card/news_card.dart';
+import 'package:news_app/app/core/widgets/search_bar/search_bar.dart';
 import 'package:news_app/app/features/news/widgets/types_list.dart';
 
 class NewsPage extends GetView<NewsController> {
@@ -31,19 +32,26 @@ class NewsPage extends GetView<NewsController> {
             padding: const EdgeInsets.only(top: 27, bottom: 27, left: 23),
             child: TypesList(cards: controller.type),
           ),
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: controller.filteredNewsList.length,
-              itemBuilder: ((context, index) {
-                var news = controller.filteredNewsList[index];
-                return NewsCard(
-                  onTap: () => controller.goToNewsDetail(news: news),
-                  news: news,
-                );
-              }),
-            ),
-          ),
+          controller.filteredNewsList.isEmpty
+              ? Padding(
+                  padding: EdgeInsets.only(top: 1.sh / 3.5),
+                  child: Center(
+                    child: AppText.bodyMedium('No results'),
+                  ),
+                )
+              : Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: controller.filteredNewsList.length,
+                    itemBuilder: ((context, index) {
+                      var news = controller.filteredNewsList[index];
+                      return NewsCard(
+                        onTap: () => controller.goToNewsDetail(news: news),
+                        news: news,
+                      );
+                    }),
+                  ),
+                ),
         ],
       ),
     );

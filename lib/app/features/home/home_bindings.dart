@@ -4,6 +4,7 @@ import 'package:news_app/app/core/repositories/link_launcher/link_launcher_repos
 import 'package:news_app/app/core/repositories/news_repository/news_repository.dart';
 import 'package:news_app/app/core/repositories/news_repository/news_repository_interface.dart';
 import 'package:news_app/app/core/routes/app_pages.dart';
+import 'package:news_app/app/features/favorites/favorite_controller.dart';
 import 'package:news_app/app/features/home/home_controller.dart';
 import 'package:news_app/app/core/bindings/core_bindings.dart';
 import 'package:news_app/app/features/news/news_controller.dart';
@@ -29,6 +30,7 @@ class HomeBindings implements CoreBidings {
   void registerControllers() {
     Get.lazyPut(() => HomeController(), fenix: true);
     Get.lazyPut(() => NewsController(repository: Get.find()), fenix: true);
+    Get.lazyPut(() => FavoriteController(repository: Get.find()), fenix: true);
   }
 
   @override
