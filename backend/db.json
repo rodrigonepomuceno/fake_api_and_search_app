@@ -46,13 +46,13 @@
             "dimensions": "90W X 90H",
             "comments": [
                 {
-                    "email": "email@email.com",
+                    "email": "email1@email.com",
                     "comment": "Adorei o quadro",
                     "stars": 5
                 },
                 {
-                    "email": "email@email.com",
-                    "comment": "Adorei o quadro",
+                    "email": "email2@email.com",
+                    "comment": "Ótima foto",
                     "stars": 4
                 }
             ],
@@ -75,14 +75,24 @@
             "dimensions": "30W X 80H",
             "comments": [
                 {
-                    "email": "email@email.com",
+                    "email": "email1@email.com",
                     "comment": "Adorei o quadro",
                     "stars": 5
                 },
                 {
-                    "email": "email@email.com",
+                    "email": "email2@email.com",
                     "comment": "Podia focar melhor a imagem",
                     "stars": 2
+                },
+                {
+                    "email": "email3@email.com",
+                    "comment": "Good",
+                    "stars": 4
+                },
+                {
+                    "email": "email4@email.com",
+                    "comment": "Boa Foto",
+                    "stars": 4
                 }
             ],
             "author": {
